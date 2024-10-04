@@ -51,6 +51,12 @@ class Recycler_adapter(var array: ArrayList<Student>,var clickInterface:onClick)
 //            add.setOnClickListener {
 //                clickInterface.add(position)
 //            }
+            viewdetails.setOnClickListener{
+                clickInterface.viewdetails(position)
+            }
+
+
+
 
 
 
@@ -63,6 +69,7 @@ class Recycler_adapter(var array: ArrayList<Student>,var clickInterface:onClick)
             fun delete(position: Int)
             fun update(position: Int)
             fun add(position: Int)
+            fun viewdetails(position: Int)
         }
     }
 

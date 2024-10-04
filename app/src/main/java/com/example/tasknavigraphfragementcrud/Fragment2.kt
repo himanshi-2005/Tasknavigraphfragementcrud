@@ -29,10 +29,14 @@ var getvalue1=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            getvalue1=it.getString("value","")
-            getvalue2=it.getString("value","")
-            getvalue3=it.getString("value","")
+            getvalue1=it.getString("value1","")
+            getvalue2=it.getString("value2","")
+            getvalue3=it.getString("value3","")
         }
+
+        println("data:$getvalue1")
+        println("data:$getvalue2")
+        println("data:$getvalue3")
     }
 
     override fun onCreateView(

@@ -33,19 +33,12 @@ class Fragment1 : Fragment(), Recycler_adapter.onClick {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var recyclerAdapter: Recycler_adapter
-    var studentlist= arrayListOf<Student>()
-   lateinit var binding: Fragment1Binding
+    var studentlist = arrayListOf<Student>()
+    lateinit var binding: Fragment1Binding
     var name = view?.findViewById<EditText>(R.id.edt1)
     var product = view?.findViewById<EditText>(R.id.edt2)
     val stock = view?.findViewById<EditText>(R.id.edt3)
- var btnnext=view?.findViewById<Button>(R.id.btn4)
-//
-//    var dialog = Dialog(requireContext())
-//
-//    var editText1 =dialog.findViewById<EditText>(R.id.edtf1)
-//    var editText2=dialog.findViewById<EditText>(R.id.edtf2)
-//    var editText3 =dialog.findViewById<EditText>(R.id.edtf3)
-
+    var btnnext = view?.findViewById<Button>(R.id.btn4)
 
 
 
@@ -62,7 +55,7 @@ class Fragment1 : Fragment(), Recycler_adapter.onClick {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=Fragment1Binding.inflate(layoutInflater)
+        binding = Fragment1Binding.inflate(layoutInflater)
         // Inflate the layout for this fragment
         return binding.root
 
@@ -77,24 +70,7 @@ class Fragment1 : Fragment(), Recycler_adapter.onClick {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.recyclerView.adapter = recyclerAdapter
 
-          btnnext?.setOnClickListener {
-            if (name?.text.toString().isNullOrEmpty()) {
-                Toast.makeText(requireContext(), "enter data first", Toast.LENGTH_SHORT).show()
 
-            } else if (product?.text.toString().isNullOrEmpty()) {
-                Toast.makeText(requireContext(), "enter data first", Toast.LENGTH_SHORT).show()
-            } else if (stock?.text.toString().isNullOrEmpty()) {
-                Toast.makeText(requireContext(), "enter data first", Toast.LENGTH_SHORT).show()
-
-            } else {
-                var bundle = Bundle()
-                bundle.putString("value", name?.text.toString())
-                bundle.putString("value", product?.text.toString())
-                bundle.putString("value", stock?.text.toString())
-
-                findNavController().navigate(R.id.fragment2, bundle)
-            }
-        }
         binding.but?.setOnClickListener {
             // Toast.makeText(requireContext(), "btnclicked", Toast.LENGTH_SHORT).show()
             var dialog = Dialog(requireContext())
@@ -149,20 +125,18 @@ class Fragment1 : Fragment(), Recycler_adapter.onClick {
         }
 
 
-
-
-
     }
 
     override fun delete(position: Int) {
         AlertDialog.Builder(requireContext()).apply {
             setTitle("Do you want to delete")
-            setPositiveButton("Yes"){_,_->
+            setPositiveButton("Yes") { _, _ ->
                 studentlist.removeAt(position)
                 recyclerAdapter.notifyDataSetChanged()
             }
-            setNegativeButton("No"){_,_->
-                Toast.makeText(requireContext(), "List item is not deleted", Toast.LENGTH_SHORT).show()
+            setNegativeButton("No") { _, _ ->
+                Toast.makeText(requireContext(), "List item is not deleted", Toast.LENGTH_SHORT)
+                    .show()
             }
             setCancelable(false)
             show()
@@ -170,25 +144,8 @@ class Fragment1 : Fragment(), Recycler_adapter.onClick {
         }
     }
 
-//override fun delete(position: Int) {
-////
-////    studentlist.removeAt(position)
-////    recyclerAdapter.notifyDataSetChanged()
-////    Toast.makeText(requireContext(), "delete :${studentlist[position]}", Toast.LENGTH_SHORT).show()
-//    AlertDialog.Builder(requireContext()) .apply{
-//        setTitle("Do you want to exit this screen")
-//        setPositiveButton("Yes"){_,_->
-//          requireActivity().finish()
-//            Toast.makeText(requireContext(),"Positive",Toast.LENGTH_SHORT).show()
-//        }
-//        setNegativeButton("No"){_,_->
-//            Toast.makeText(requireContext(),"Negative",Toast.LENGTH_SHORT).show()
-//        }
-//        setCancelable(false)
-//        show()
-//    }
-//
-//}
+
+
 
     override fun update(position: Int) {
         val currentStudent = studentlist[position]
@@ -212,14 +169,7 @@ class Fragment1 : Fragment(), Recycler_adapter.onClick {
             ViewGroup.LayoutParams.WRAP_CONTENT,
         )
         dialog.show()
-        //editText2.setText(textFromEditText1)
-      //  val editText2 = dialog2.findViewById<EditText>(R.id.editText2)
-//            var a=dialog.findViewById<EditText>(R.id.edtf1)
-//        var b=dialog.findViewById<EditText>(R.id.edtf2)
-//        var c=dialog.findViewById<EditText>(R.id.edtf3)
-//        editText1up.setText(a.text.toString())
-//        editText2up.setText(b.text.toString())
-//        editText3up.setText(c.text.toString())
+
 
 
         btnup?.setOnClickListener {
@@ -234,129 +184,42 @@ class Fragment1 : Fragment(), Recycler_adapter.onClick {
                 Toast.makeText(requireContext(), "Enter the value", Toast.LENGTH_SHORT).show()
             } else {
 
-//                Student(
-//                    name = editText1up.text.toString(),
-//                    product = editText2up.text.toString(),
-//                    stock = editText3up.text.toString()
-//
-//                )
-                studentlist.set(position, Student(name = editText1up.text.toString(),
-                    product = editText2up.text.toString(),
-                    stock = editText3up.text.toString()
+                studentlist.set(
+                    position, Student(
+                        name = editText1up.text.toString(),
+                        product = editText2up.text.toString(),
+                        stock = editText3up.text.toString()
+                    )
                 )
-                )
-recyclerAdapter.notifyDataSetChanged()
+                recyclerAdapter.notifyDataSetChanged()
             }
 
 
         }
-
-//    override fun add(position: Int) {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun update(position: Int) {
-//
-//
-//        var dialog = Dialog(requireContext())
-//        dialog.setContentView(R.layout.data_entry_layout2)
-//        var btn =dialog.findViewById<Button>(R.id.btn2up)
-//        var editText1up =dialog.findViewById<EditText>(R.id.edtf1up)
-//        var editText2up=dialog.findViewById<EditText>(R.id.edtf2up)
-//        var editText3up =dialog.findViewById<EditText>(R.id.edtf3up)
-//
-//
-//        dialog.window?.setLayout(
-//            ViewGroup.LayoutParams.MATCH_PARENT,
-//            ViewGroup.LayoutParams.WRAP_CONTENT,
-//
-//            )
-//
-//      dialog.show()
-////     editText1up=editText1.text.toString()
-////                  editText2up=editText2.text.toString()
-////                    editText3up=editText3.text.toString()
-//        editText1up=view?.findViewById(R.id.edtf1)
-//        editText2up=view?.findViewById(R.id.edtf2)
-//        editText3up=view?.findViewById(R.id.edtf3)
-//
-//        btn?.setOnClickListener{
-//            if(editText1up?.text.isNullOrEmpty()){
-//                editText1up?.error = "Value Required"
-//                Toast.makeText(requireContext(),"Enter a value",Toast.LENGTH_SHORT).show()
-//            }
-//            else if (editText2up?.text.isNullOrEmpty()){
-//                editText2up?.error = "Value Required"
-//                Toast.makeText(requireContext(),"Enter the value",Toast.LENGTH_SHORT).show()
-//            }
-//            else if (editText3up?.text.isNullOrEmpty()){
-//                editText3up?.error = "Value Required"
-//                Toast.makeText(requireContext(),"Enter the value",Toast.LENGTH_SHORT).show()
-//            }
-//
-//        else{
-//
-//            Student(name = editText1up.text.toString(),
-//                product = editText2up.text.toString(),
-//                stock = editText3up.text.toString())
-//
-//        }
-//        }
-//        dialog.dismiss()
-//        dialog.setCancelable(false)
-//    }
-//
-//
-//
-//
-//override fun add(position: Int) {
-//    studentlist.add(Student("name","product","stock"))
-//
-//    var dialog = Dialog(requireContext())
-//    dialog.setContentView(R.layout.data_entry_layout)
-//    var btn =dialog.findViewById<Button>(R.id.btn2)
-//    var editText1 =dialog.findViewById<EditText>(R.id.edtf1)
-//    var editText2=dialog.findViewById<EditText>(R.id.edtf2)
-//    var editText3 =dialog.findViewById<EditText>(R.id.edtf3)
-//
-//    dialog.window?.setLayout(
-//        ViewGroup.LayoutParams.MATCH_PARENT,
-//        ViewGroup.LayoutParams.WRAP_CONTENT,
-//    )
-//
-//    dialog.show()
-//    btn?.setOnClickListener{
-//        if(editText1?.text.isNullOrEmpty()){
-//            editText1?.error = "Value Required"
-//            Toast.makeText(requireContext(),"Enter a value",Toast.LENGTH_SHORT).show()
-//        }
-//        else if (editText2?.text.isNullOrEmpty()){
-//            editText2?.error = "Value Required"
-//            Toast.makeText(requireContext(),"Enter the value",Toast.LENGTH_SHORT).show()
-//        }
-//        else if (editText3?.text.isNullOrEmpty()){
-//            editText3?.error = "Value Required"
-//            Toast.makeText(requireContext(),"Enter the value",Toast.LENGTH_SHORT).show()
-//        }
-//
-//        else{
-//
-//
-//            Student(name = editText1.text.toString(),
-//                product = editText2.text.toString(),
-//                stock = editText3.text.toString())
-//        }
-//
-//        dialog.dismiss()
-//        dialog.setCancelable(false)
-//    }
-//}
 
     }
 
     override fun add(position: Int) {
         TODO("Not yet implemented")
     }
+
+    override fun viewdetails(position: Int) {
+        val currentStudent = studentlist[position]
+
+                var bundle = Bundle()
+                bundle.putString("value1",currentStudent.name)
+                bundle.putString("value2",currentStudent.product)
+                bundle.putString("value3",currentStudent.stock)
+
+
+                findNavController().navigate(R.id.fragment2, bundle)
+
+
+
+    }
+
+
+
 
     companion object {
         /**
@@ -377,5 +240,5 @@ recyclerAdapter.notifyDataSetChanged()
                 }
             }
     }
-
 }
+
